@@ -52,8 +52,8 @@ bindsym XF86AudioLowerVolume exec pamixer -d 5 && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioMute exec pamixer -t && pkill -RTMIN+2 i3blocks
 
 ################ Brightness Control ################
-bindsym XF86MonBrightnessUp exec $XDG_CONFIG_HOME/stupidscripts/change_oled_brightness 5
-bindsym XF86MonBrightnessDown exec $XDG_CONFIG_HOME/stupidscripts/change_oled_brightness -5
+bindsym XF86MonBrightnessUp exec $XDG_CONFIG_HOME/stupidscripts/change_brightness 5
+bindsym XF86MonBrightnessDown exec $XDG_CONFIG_HOME/stupidscripts/change_brightness -5
 bindsym XF86TouchpadToggle exec $XDG_CONFIG_HOME/stupidscripts/toggle_screen
 
 ################ Window Layout ################
