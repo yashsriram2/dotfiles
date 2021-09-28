@@ -1,0 +1,8 @@
+dynamic_title = true
+search_wrap = true
+
+scroll_on_keystroke = true
+scroll_on_output = false
+
+urgent_on_bell = true
+scrollback_lines = -1

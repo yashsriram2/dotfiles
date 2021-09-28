@@ -1,0 +1,105 @@
+snippet enum "Enumerate" bA
+\begin{enumerate}[nolistsep]
+	\item $1
+\end{enumerate}
+$0
+endsnippet
+
+snippet item "Itemize" bA
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet mb "Math" wA
+\[
+$0
+\]
+endsnippet
+
+snippet quo "Quotes" wA
+\`$1' $0
+endsnippet
+
+snippet clr "Color text" wA
+{\color{$1} $2} $0
+endsnippet
+
+snippet m21 "Matrix 2x1"
+\begin{bmatrix}
+	$1 \\\\
+	$2
+\end{bmatrix}
+endsnippet
+
+snippet m31 "Matrix 3x1"
+\begin{bmatrix}
+	$1 \\\\
+	$2 \\\\
+	$3
+\end{bmatrix}
+endsnippet
+
+snippet m22 "Matrix 2x2"
+\begin{bmatrix}
+	$1 & $2 \\\\
+	$3 & $4
+\end{bmatrix}
+endsnippet
+
+snippet m33 "Matrix 3x3"
+\begin{bmatrix}
+	$1 & $2 & $3 \\\\
+	$4 & $5 & $6 \\\\
+	$7 & $8 & $9
+\end{bmatrix}
+endsnippet
+
+snippet m44 "Matrix 4x4"
+\begin{bmatrix}
+	$1 & $2 & $3 & $4 \\\\
+	$5 & $6 & $7 & $8 \\\\
+	$9 & $10 & $11 & $12 \\\\
+	$13 & $14 & $15 & $16
+\end{bmatrix}
+endsnippet
+
+snippet i3 "Identity Matrix 3x3"
+\begin{bmatrix}
+	1 & 0 & 0 \\\\
+	0 & 1 & 0 \\\\
+	0 & 0 & 1
+\end{bmatrix}
+endsnippet
+
+snippet article "Article template"
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{$1}
+\author{${2:Yashasvi Sriram Patkuri}}
+
+\begin{document}
+\maketitle
+$0
+
+\end{document}
+endsnippet
+
+snippet today "Date"
+`date +%F`
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+
+

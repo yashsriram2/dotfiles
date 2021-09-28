@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# check if input is number
+TIMER_SECONDS=$(echo -e "15\n30\n60\n120\n180\n240\n300\n600" | dmenu -b -i -fn 'Fira Mono-20' -p "Timer (sec)")
+
+[ "${TIMER_SECONDS}" = "" ] && exit 0
+
+if ! [[ "${TIMER_SECONDS}" == ?(-)+([0-9]) ]] ; then
+  notify-send --app-name="Timer" --urgency=CRITICAL "Need a number :)"
+  exit -1
+fi
+
+if ! ((TIMER_SECONDS >= 15 && TIMER_SECONDS <= 3600)); then
+  notify-send --app-name="Timer" --urgency=CRITICAL "Out of range"
+  exit -1
+fi
+
+sleep ${TIMER_SECONDS} && notify-send --app-name="Timer" --urgency=CRITICAL "${TIMER_SECONDS} seconds up"

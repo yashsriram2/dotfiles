@@ -1,0 +1,160 @@
+# Yashasvi Sriram's i3 config
+
+################ Definitions ################
+set $alt_key Mod1
+set $windows_key Mod4
+
+################ Daemons ################
+exec --no-startup-id i3-battery-popup -L 50 -n -m "Battery low!"
+exec --no-startup-id dunst
+
+################ High Level Commands ################
+# reload the configuration file
+bindsym $windows_key+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $windows_key+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $windows_key+Shift+e exec $XDG_CONFIG_HOME/stupidscripts/dmenu_prompt 'Do you really want to exit i3?' 'i3-msg exit'
+# reboot
+bindsym $windows_key+Shift+d exec $XDG_CONFIG_HOME/stupidscripts/dmenu_prompt 'Do you really want to reboot?' 'reboot'
+# kill application
+bindsym $windows_key+Shift+q kill
+
+################ Application startup positions ################
+for_window [class="SpeedCrunch"] floating enable, resize set 840 500, move position center, border pixel 2
+
+################ Application Keymaps ################
+bindsym $windows_key+Return exec alacritty
+bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-22'
+bindsym $windows_key+z exec $XDG_CONFIG_HOME/stupidscripts/emojis_select
+bindsym $windows_key+x exec qutebrowser
+
+bindsym $windows_key+m exec $XDG_CONFIG_HOME/stupidscripts/talk_to_me
+bindsym $windows_key+n exec alacritty -e neomutt
+
+bindsym $windows_key+a exec speedcrunch
+bindsym $windows_key+s exec subl
+bindsym $windows_key+y exec $XDG_CONFIG_HOME/stupidscripts/timer
+
+################ Screenshot Keymaps ################
+bindsym --release Print exec $XDG_CONFIG_HOME/stupidscripts/screenshot 'Screenshot name' '' 'Screenshot captured'
+bindsym --release $windows_key+Print exec exec $XDG_CONFIG_HOME/stupidscripts/screenshot 'Patchshot name' '-s' 'Patchshot captured'
+
+################ Screencast Keymaps ################
+bindsym --release $windows_key+r exec $XDG_CONFIG_HOME/stupidscripts/screencast 'Screencast name' 'Screencast captured'
+bindsym --release $windows_key+t exec killall -SIGINT ffmpeg
+# bindsym --release $windows_key+y exec screenkey
+# bindsym --release $windows_key+u exec pkill screenkey
+
+################ Volume Control ################
+bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec pamixer -d 5 && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMute exec pamixer -t && pkill -RTMIN+2 i3blocks
+
+################ Brightness Control ################
+bindsym XF86MonBrightnessUp exec $XDG_CONFIG_HOME/stupidscripts/change_oled_brightness 5
+bindsym XF86MonBrightnessDown exec $XDG_CONFIG_HOME/stupidscripts/change_oled_brightness -5
+bindsym XF86TouchpadToggle exec $XDG_CONFIG_HOME/stupidscripts/toggle_screen
+
+################ Window Layout ################
+# change container layout (stacked, tabbed, toggle split)
+workspace_layout tabbed
+bindsym $windows_key+w layout tabbed
+bindsym $windows_key+e layout toggle split
+# bindsym $windows_key+s layout stacking
+bindsym $windows_key+v fullscreen toggle
+# split in horizontal orientation
+bindsym $windows_key+f split h
+# split in vertical orientation
+bindsym $windows_key+g split v
+# toggle tiling / floating
+bindsym $windows_key+q floating toggle
+
+################ Window Switching ################
+bindsym $alt_key+Tab focus right
+bindsym $alt_key+Shift+Tab focus left
+# you can use the cursor keys:
+bindsym $windows_key+Right focus right
+bindsym $windows_key+Left focus left
+bindsym $windows_key+Down focus down
+bindsym $windows_key+Up focus up
+
+################ Gaps Control ################
+smart_gaps on
+gaps inner 5
+bindsym $windows_key+o gaps outer current plus 5
+bindsym $windows_key+Shift+o gaps outer current minus 5
+bindsym $windows_key+i gaps inner current plus 5
+bindsym $windows_key+Shift+i gaps inner current minus 5
+
+################ Floating Control ################
+# change focus between tiling / floating windows
+bindsym $alt_key+q focus mode_toggle
+
+################ Window Size Control ################
+bindsym $windows_key+$alt_key+Left resize shrink width 30 px or 30 ppt
+bindsym $windows_key+$alt_key+Right resize grow width 30 px or 30 ppt
+bindsym $windows_key+$alt_key+Up resize shrink height 30 px or 30 ppt
+bindsym $windows_key+$alt_key+Down resize grow height 30 px or 30 ppt
+
+################ Window Postion Control ################
+bindsym $windows_key+Shift+Left move left 30 px
+bindsym $windows_key+Shift+Down move down 30 px
+bindsym $windows_key+Shift+Up move up 30 px
+bindsym $windows_key+Shift+Right move right 30 px
+
+################ Styling ################
+# Font for window titles. Will also be used by the bar unless a different font
+font pango: Fira Code 20
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #ffe57f #000000 #267fb5   #267fb5
+client.focused_inactive #000000 #404142 #ffffff #484e50   #333333
+client.unfocused        #000000 #000000 #ffffff #292d2e   #222222
+client.urgent           #000000 #d81b60 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+# remove borders
+default_border normal 0
+for_window [class=".*"] title_format "<b>🌈 %title</b>"
+
+################ Workspaces ################
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+
+# switch to workspace
+bindsym $windows_key+1 workspace $ws1
+bindsym $windows_key+2 workspace $ws2
+bindsym $windows_key+3 workspace $ws3
+bindsym $windows_key+4 workspace $ws4
+bindsym $windows_key+5 workspace $ws5
+
+# move focused container to workspace
+bindsym $windows_key+Shift+1 move container to workspace $ws1
+bindsym $windows_key+Shift+2 move container to workspace $ws2
+bindsym $windows_key+Shift+3 move container to workspace $ws3
+bindsym $windows_key+Shift+4 move container to workspace $ws4
+bindsym $windows_key+Shift+5 move container to workspace $ws5
+
+################ Status Bar ################
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3blocks
+    position bottom
+        colors {
+        background #000000
+
+        focused_workspace  #000000 #00bfa5
+        active_workspace   #000000 #00bfa5
+        inactive_workspace #00bfa5 #000000
+        urgent_workspace   #00ff00 #900000
+    }
+}
+bindsym $windows_key+b bar mode toggle

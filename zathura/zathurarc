@@ -1,0 +1,28 @@
+# Font
+set font " Fira mono normal 14"
+
+# Misc
+set show-recent 20
+
+# Navigation
+map <Left> navigate previous
+map <Right> navigate next
+map b jumplist backward
+
+# Copying
+set selection-clipboard clipboard
+set selection-notification true
+
+# Name hints
+set window-title-basename true
+set statusbar-home-tilde true
+set window-title-page false
+
+# Layout
+set statusbar-h-padding 8
+set statusbar-v-padding 2
+
+# Colors
+set recolor-keephue true
+set recolor-reverse-video true
+

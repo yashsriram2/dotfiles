@@ -1,0 +1,11 @@
+#!/bin/sh
+
+SAVE_FILE_NAME="primary_selection_text.wav"
+
+selected_text=$(xclip -out -selection primary)
+if [ $? -eq 0 ] && [ "${selected_text}" != "" ]
+  then
+	echo "${selected_text}" | flite -voice slt -o "/tmp/${SAVE_FILE_NAME}"
+  play "/tmp/${SAVE_FILE_NAME}" 2>/dev/null
+fi
+
