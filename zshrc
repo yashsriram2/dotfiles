@@ -18,7 +18,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # aliases
 alias r="ranger"
-alias tig="tig --all"
 alias tl="trash-list"
 
 # git aliases
@@ -30,4 +29,6 @@ alias gitd="git diff"
 alias gitl="git log"
 alias gitb="git branch"
 
-PROMPT="%B%F{cyan}%d%f %F{green}[%j jobs]%f %F{magenta}[%? returned]%f%b "
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship.toml
+eval "$(starship init zsh)"
+# PROMPT="%B%F{cyan}%d%f %F{green}[%j jobs]%f %F{magenta}[%? returned]%f%b "

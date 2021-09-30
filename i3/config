@@ -28,6 +28,7 @@ bindsym $windows_key+Return exec alacritty
 bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-22'
 bindsym $windows_key+z exec $XDG_CONFIG_HOME/stupidscripts/emojis_select
 bindsym $windows_key+x exec qutebrowser
+bindsym $windows_key+l exec i3lock -i ~/wallpapers/lock.png
 
 bindsym $windows_key+m exec $XDG_CONFIG_HOME/stupidscripts/talk_to_me
 bindsym $windows_key+n exec alacritty -e neomutt
