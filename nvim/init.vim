@@ -14,6 +14,7 @@ call plug#begin()
   Plug 'sirver/ultisnips'
   Plug 'francoiscabrol/ranger.vim'
   Plug 'rbgrouleff/bclose.vim'
+  Plug 'yashsriram/vim-searchindex'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
