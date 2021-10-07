@@ -212,3 +212,6 @@ nnoremap <leader>g :GFiles<Enter>
 
 " set html syntax for tera templates
   autocmd BufReadPost *.html.tera set syntax=html
+
+" py files fold method
+  autocmd BufReadPost *.py set foldmethod=indent
