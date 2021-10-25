@@ -70,7 +70,7 @@ color=#76ff03
 [brightness]
 label=
 color=#ffd600
-command=echo "$(xrandr --verbose | grep -i brightness | awk 'NR==1{print $2}')"
+command=echo "$(xrandr --verbose | grep -i brightness | awk '{print $2}' | tr '\n' ' ')"
 interval=once
 signal=1
 

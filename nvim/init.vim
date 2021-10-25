@@ -187,8 +187,8 @@ let g:LanguageClient_serverCommands = {
 nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
 autocmd BufWritePost *.rs,*.py,*.c,*.cpp call LanguageClient#textDocument_formatting()
 nnoremap <leader>n :call LanguageClient#textDocument_rename()<Enter>
-nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
 nnoremap <leader>h :call LanguageClient#textDocument_hover()<Enter>
+nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
 nnoremap <leader>r :call LanguageClient#textDocument_references()<Enter>
 nnoremap <leader>i :call LanguageClient#textDocument_implementation()<Enter>
 nnoremap <leader>g :GFiles<Enter>
