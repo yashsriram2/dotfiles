@@ -41,7 +41,6 @@ $vagrant\
 $zig\
 $nix_shell\
 $conda\
-$memory_usage\
 $aws\
 $gcloud\
 $openstack\
@@ -98,13 +97,6 @@ read_only = "\uf023" #
 read_only_style = 'red'
 truncation_symbol = '…/' #
 home_symbol = '~'
-
-[memory_usage]
-threshold = 25
-format = '$symbol[$ram_pct]($style) '
-style = 'white dimmed'
-symbol = "\ue266 "
-disabled = false
 
 [package]
 format = '[$symbol$version]($style) '
