@@ -9,6 +9,7 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-fugitive'
   Plug 'lifepillar/vim-mucomplete'
   Plug 'airblade/vim-gitgutter'
   Plug 'sirver/ultisnips'
@@ -17,6 +18,7 @@ call plug#begin()
   Plug 'yashsriram/vim-searchindex'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'peterhoeg/vim-qml'
 
   Plug 'lervag/vimtex'
   Plug 'cespare/vim-toml', {
@@ -192,6 +194,7 @@ nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
 nnoremap <leader>r :call LanguageClient#textDocument_references()<Enter>
 nnoremap <leader>i :call LanguageClient#textDocument_implementation()<Enter>
 nnoremap <leader>g :GFiles<Enter>
+nnoremap <C-A-a> "hyiw:Rg <C-r>h<Enter>
 
 " airline
   let g:airline#extensions#tabline#enabled = 1

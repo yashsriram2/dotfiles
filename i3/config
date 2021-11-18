@@ -24,7 +24,7 @@ bindsym $windows_key+Shift+q kill
 for_window [class="SpeedCrunch"] floating enable, resize set 840 500, move position center, border pixel 2
 
 ################ Application Keymaps ################
-bindsym $windows_key+Return exec alacritty
+bindsym $windows_key+Return exec alacritty --working-directory ~/shining_software
 bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-22'
 bindsym $windows_key+z exec $XDG_CONFIG_HOME/stupidscripts/emojis_select
 bindsym $windows_key+x exec qutebrowser
