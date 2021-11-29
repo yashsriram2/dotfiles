@@ -1,7 +1,8 @@
 #! /bin/bash
 
 # check if input is number
-TIMER_SECONDS=$(echo -e "15\n30\n60\n120\n180\n240\n300\n600" | dmenu -b -i -fn 'Fira Mono-20' -p "Timer (sec)")
+TIMER_MINUTES=$(echo -e "10\n20\n" | dmenu -b -i -fn 'Fira Mono-20' -p "Timer (min)")
+TIMER_SECONDS=$((TIMER_MINUTES * 60))
 
 [ "${TIMER_SECONDS}" = "" ] && exit 0
 

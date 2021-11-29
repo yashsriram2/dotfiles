@@ -30,22 +30,12 @@ bindsym $windows_key+z exec $XDG_CONFIG_HOME/stupidscripts/emojis_select
 bindsym $windows_key+x exec qutebrowser
 bindsym $windows_key+l exec i3lock
 
-bindsym $windows_key+m exec $XDG_CONFIG_HOME/stupidscripts/talk_to_me
-bindsym $windows_key+n exec alacritty -e neomutt
+bindsym $windows_key+n exec xrandr -s 0
+bindsym $windows_key+m exec xrandr -s 0 && xrandr --output eDP-1 --auto --output DP-2-2 --auto --right-of eDP-1
 
 bindsym $windows_key+a exec speedcrunch
 bindsym $windows_key+s exec subl
-bindsym $windows_key+y exec $XDG_CONFIG_HOME/stupidscripts/timer
-
-################ Screenshot Keymaps ################
-bindsym --release Print exec $XDG_CONFIG_HOME/stupidscripts/screenshot 'Screenshot name' '' 'Screenshot captured'
-bindsym --release $windows_key+Print exec exec $XDG_CONFIG_HOME/stupidscripts/screenshot 'Patchshot name' '-s' 'Patchshot captured'
-
-################ Screencast Keymaps ################
-bindsym --release $windows_key+r exec $XDG_CONFIG_HOME/stupidscripts/screencast 'Screencast name' 'Screencast captured'
-bindsym --release $windows_key+t exec killall -SIGINT ffmpeg
-# bindsym --release $windows_key+y exec screenkey
-# bindsym --release $windows_key+u exec pkill screenkey
+bindsym $windows_key+t exec $XDG_CONFIG_HOME/stupidscripts/timer
 
 ################ Volume Control ################
 bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pkill -RTMIN+2 i3blocks
