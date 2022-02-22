@@ -30,7 +30,7 @@ align=center
 separator=false
 separator_block_width=10
 
-# Trash indicator
+# Trash
 [trash]
 command=echo "$(($(ls -a ~/.local/share/Trash/info | wc -w) - 2)) | $(du -sh ~/.local/share/Trash/files | awk '{print $1}')"
 interval=60
@@ -58,7 +58,7 @@ color=#00e676
 
 # Volume indicator
 [volume]
-command=$(pamixer --get-mute) && echo "Mute" || echo "$(pamixer --get-volume)%"
+command=$(pamixer --get-mute) && echo "Mute" || echo "🕫 $(pamixer --get-volume)%"
 interval=once
 color=#76ff03
 signal=2
@@ -70,8 +70,8 @@ color=#76ff03
 [brightness]
 label=
 color=#ffd600
-command=echo "$(xrandr --verbose | grep -i brightness | awk '{print $2}' | tr '\n' ' ')"
-interval=once
+command=printf "🟒 %.0f%%" $(xbacklight -get)
+interval=60
 signal=1
 
 [separator]
@@ -81,7 +81,7 @@ color=#ffd600
 [temp]
 label=
 color=#f44336
-command=echo "CPU:$(sensors | grep id | awk '{print $4}')"
+command=echo "$(sensors | grep id | awk '{print $4}')"
 interval=10
 
 [separator]
@@ -126,4 +126,3 @@ interval=10
 
 [separator]
 color=#e040fb
-

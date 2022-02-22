@@ -3,6 +3,7 @@
 ################ Definitions ################
 set $alt_key Mod1
 set $windows_key Mod4
+set $control_key Control
 
 ################ Daemons ################
 exec --no-startup-id i3-battery-popup -L 50 -n -m "Battery low!"
@@ -14,9 +15,9 @@ bindsym $windows_key+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $windows_key+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $windows_key+Shift+e exec $XDG_CONFIG_HOME/stupidscripts/dmenu_prompt 'Do you really want to exit i3?' 'i3-msg exit'
+bindsym $windows_key+Shift+e exec [ $(echo "Nope\nYes" | dmenu -b -fn 'Fira Mono-20' -i -p 'Do you really want to exit i3?') = "Yes" ] && i3-msg exit
 # reboot
-bindsym $windows_key+Shift+d exec $XDG_CONFIG_HOME/stupidscripts/dmenu_prompt 'Do you really want to reboot?' 'reboot'
+bindsym $windows_key+Shift+d exec [ $(echo "Nope\nYes" | dmenu -b -fn 'Fira Mono-20' -i -p  'Do you really want to reboot?') = "Yes" ] && reboot
 # kill application
 bindsym $windows_key+Shift+q kill
 
@@ -24,28 +25,23 @@ bindsym $windows_key+Shift+q kill
 for_window [class="SpeedCrunch"] floating enable, resize set 840 500, move position center, border pixel 2
 
 ################ Application Keymaps ################
-bindsym $windows_key+Return exec alacritty --working-directory ~/shining_software
-bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-22'
-bindsym $windows_key+z exec $XDG_CONFIG_HOME/stupidscripts/emojis_select
-bindsym $windows_key+x exec qutebrowser
-bindsym $windows_key+l exec i3lock
-
-bindsym $windows_key+n exec xrandr -s 0
-bindsym $windows_key+m exec xrandr -s 0 && xrandr --output eDP-1 --auto --output DP-2-2 --auto --right-of eDP-1
-
+bindsym $windows_key+Return exec alacritty --working-directory ~/school/shining_software
+bindsym $windows_key+n exec alacritty -e nvr +'cd ~/school/shining_software'
+bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-26'
+bindsym $windows_key+l exec i3lock -i ~/dotfiles/lockscreen.png
 bindsym $windows_key+a exec speedcrunch
-bindsym $windows_key+s exec subl
-bindsym $windows_key+t exec $XDG_CONFIG_HOME/stupidscripts/timer
+bindsym $windows_key+m exec xrandr --output eDP1 --mode 1920x1080 --rate 60 --output DP2-2 --size 0 --mode 1920x1080 --rate 60 --same-as eDP1 --brightness 0.8
+bindsym $windows_key+s exec slack
+bindsym $windows_key+t exec spotify
+
+################ Brightness Control ################
+bindsym XF86MonBrightnessUp exec xbacklight -inc 2% && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessDown exec xbacklight -dec 2% && pkill -RTMIN+1 i3blocks
 
 ################ Volume Control ################
 bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioLowerVolume exec pamixer -d 5 && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioMute exec pamixer -t && pkill -RTMIN+2 i3blocks
-
-################ Brightness Control ################
-bindsym XF86MonBrightnessUp exec $XDG_CONFIG_HOME/stupidscripts/change_brightness 5
-bindsym XF86MonBrightnessDown exec $XDG_CONFIG_HOME/stupidscripts/change_brightness -5
-bindsym XF86TouchpadToggle exec $XDG_CONFIG_HOME/stupidscripts/toggle_screen
 
 ################ Window Layout ################
 # change container layout (stacked, tabbed, toggle split)
@@ -65,10 +61,8 @@ bindsym $windows_key+q floating toggle
 bindsym $alt_key+Tab focus right
 bindsym $alt_key+Shift+Tab focus left
 # you can use the cursor keys:
-bindsym $windows_key+Right focus right
-bindsym $windows_key+Left focus left
-bindsym $windows_key+Down focus down
-bindsym $windows_key+Up focus up
+bindsym $windows_key+Right workspace next
+bindsym $windows_key+Left workspace prev
 
 ################ Gaps Control ################
 smart_gaps on
@@ -118,13 +112,8 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-
-# switch to workspace
-bindsym $windows_key+1 workspace $ws1
-bindsym $windows_key+2 workspace $ws2
-bindsym $windows_key+3 workspace $ws3
-bindsym $windows_key+4 workspace $ws4
-bindsym $windows_key+5 workspace $ws5
+set $ws6 "6"
+set $ws7 "7"
 
 # move focused container to workspace
 bindsym $windows_key+Shift+1 move container to workspace $ws1
@@ -132,6 +121,8 @@ bindsym $windows_key+Shift+2 move container to workspace $ws2
 bindsym $windows_key+Shift+3 move container to workspace $ws3
 bindsym $windows_key+Shift+4 move container to workspace $ws4
 bindsym $windows_key+Shift+5 move container to workspace $ws5
+bindsym $windows_key+Shift+6 move container to workspace $ws6
+bindsym $windows_key+Shift+7 move container to workspace $ws7
 
 ################ Status Bar ################
 # Start i3bar to display a workspace bar (plus the system information i3status

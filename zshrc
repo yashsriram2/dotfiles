@@ -18,17 +18,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # aliases
 alias r="ranger"
-alias tl="trash-list"
-
-# git aliases
-alias gits="git status"
-alias gita="git add"
-alias gitc="git commit"
-alias gitp="git push"
-alias gitd="git diff"
-alias gitl="git log"
-alias gitb="git branch"
+alias g="git"
+alias gs="git status"
+alias b="brainos"
+alias bs="brainos status"
+alias bb="brainos sandbox"
+alias bbr="brainos sandbox -r"
+alias t="trash-list"
 
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship.toml
 eval "$(starship init zsh)"
-# PROMPT="%B%F{cyan}%d%f %F{green}[%j jobs]%f %F{magenta}[%? returned]%f%b "

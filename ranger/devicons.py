@@ -32,6 +32,7 @@ file_node_extensions = {
     'cp'       : '',
     'cpio'     : '',
     'cpp'      : '',
+    'csv'      : '⫢',
     'hpp'      : 'h',
     'glsl'     : 'g',
     'frag'     : 'f',
@@ -75,6 +76,7 @@ file_node_extensions = {
     'js'       : '',
     'json'     : '',
     'jsx'      : '',
+    'jenkinsfile'      : 'ज',
     'less'     : '',
     'lha'      : '',
     'lhs'      : '',
@@ -121,6 +123,7 @@ file_node_extensions = {
     'styl'     : '',
     'suo'      : '',
     't'        : '',
+    'txt'      : '🖹',
     'tar'      : '',
     'tgz'      : '',
     'ts'       : '',
@@ -135,7 +138,8 @@ file_node_extensions = {
     'xml'      : '',
     'xul'      : '',
     'xz'       : '',
-    'yml'      : '',
+    'yml'      : 'Ÿ',
+    'yaml'     : 'Ÿ',
     'zip'      : '',
     'toml'     : '',
     'lock'     : 'l',
@@ -206,6 +210,7 @@ file_node_exact_matches = {
     '.selected_editor'                 : '',
     '.vimrc'                           : '',
     '.xinputrc'                        : '',
+    'Jenkinsfile'                      : 'બ',
     'config'                           : '',
     'dropbox'                          : '',
     'exact-match-case-sensitive-1.txt' : 'X1',
@@ -234,4 +239,4 @@ file_node_exact_matches = {
 
 def devicon(file):
   if file.is_directory: return dir_node_exact_matches.get(file.relative_path, '')
-  return file_node_exact_matches.get(file.relative_path, file_node_extensions.get(file.extension, ''))
+  return file_node_exact_matches.get(file.relative_path, file_node_extensions.get(file.extension, ' '))

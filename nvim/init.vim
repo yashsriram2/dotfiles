@@ -37,6 +37,7 @@ call plug#end()
   filetype plugin on
   set title
   set number relativenumber
+  set mouse=a
   set splitbelow splitright
   set encoding=utf-8
   set tabstop=4 shiftwidth=4 expandtab
@@ -182,22 +183,29 @@ augroup END
 " lsp client
 let g:LanguageClient_serverCommands = {
     \ 'rust'    : ['~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer'],
-    \ 'python'  : ['~/.local/bin/pyls'],
+    \ 'python'  : ['pylsp'],
     \ 'c'       : ['clangd-10'],
     \ 'cpp'     : ['clangd-10'],
     \ }
-nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
+
 autocmd BufWritePost *.rs,*.py,*.c,*.cpp call LanguageClient#textDocument_formatting()
+
+nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
 nnoremap <leader>n :call LanguageClient#textDocument_rename()<Enter>
 nnoremap <leader>h :call LanguageClient#textDocument_hover()<Enter>
 nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
 nnoremap <leader>r :call LanguageClient#textDocument_references()<Enter>
 nnoremap <leader>i :call LanguageClient#textDocument_implementation()<Enter>
+
 nnoremap <leader>g :GFiles<Enter>
-nnoremap <C-A-a> "hyiw:Rg <C-r>h<Enter>
+
+nnoremap <C-A-a>   "hyiw:Rg <C-r>h<Enter>
+nnoremap <C-a>     :Rg<space>
 
 " airline
   let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#hunks#enabled=0
+  let g:airline#extensions#branch#enabled = 0
   let g:airline#extensions#tabline#left_sep = ''
   let g:airline#extensions#tabline#left_alt_sep = '|'
   let g:airline#extensions#tabline#formatter = 'unique_tail'

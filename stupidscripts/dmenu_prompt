@@ -1,3 +1,0 @@
-#! /bin/bash
-
-[ $(echo -e "Nope\nYes" | dmenu -b -fn 'Fira Mono-20' -i -p "$1") == "Yes" ] && $2

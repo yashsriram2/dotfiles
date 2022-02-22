@@ -1,154 +1,22 @@
-format = """$status\
-$username\
-$hostname\
-$shlvl\
-$kubernetes\
-$directory\
-$vcsh\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$hg_branch\
-$docker_context\
-$package\
-$cmake\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$helm\
-$java\
-$julia\
-$kotlin\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$purescript\
-$python\
-$red\
-$ruby\
-$rust\
-$scala\
-$swift\
-$terraform\
-$vagrant\
-$zig\
-$nix_shell\
-$conda\
-$aws\
-$gcloud\
-$openstack\
-$env_var\
-$crystal\
-$custom\
-$line_break\
-$cmd_duration\
-$lua\
-$jobs\
-$time\
-$shell\
-$character"""
+format = "▶ "
+right_format = "$directory$cmd_duration$status"
 
-scan_timeout = 10
-add_newline = true
-
-[line_break]
-disabled = false
+add_newline = false
 
 [status]
-format = """[(\
-$symbol$int( $common_meaning) \
-(\\(\uf0e7$signal_number( $signal_name)\\)) \
-\n)]($style) """
-symbol = "\uf467"
-not_executable_symbol = "\uf5ac"
-not_found_symbol = "\uf002"
-sigint_symbol = "\ufb8a"
-signal_symbol = "\uf0e7"
-style = 'red'
+style = "bg:blue"
+symbol = "🔴"
+format = '[\[$int $symbol $common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
-recognize_signal_code = true
 disabled = false
-
-[cmd_duration]
-min_time = 0 # Show command duration over this time
-format = 'took [$duration]($style) '
-style = 'yellow bold'
-show_milliseconds = false
-disabled = false
-show_notifications = false
-min_time_to_notify = 45000
 
 [directory]
-truncation_length = 5 #
-truncate_to_repo = false #
-fish_style_pwd_dir_length = 0
-use_logical_path = true
-format = "[\uf07b $path]($style)[$read_only]($read_only_style) " #
-style = 'cyan' #
-disabled = false
-read_only = "\uf023" #
-read_only_style = 'red'
-truncation_symbol = '…/' #
-home_symbol = '~'
+truncation_length = 0
+truncate_to_repo = false
 
-[package]
-format = '[$symbol$version]($style) '
-symbol = "\uf487 "
-style = 'yellow'
-display_private = false
+[cmd_duration]
 disabled = false
-
-[git_branch]
-format = 'on [$symbol$branch]($style)(:[$remote]($style)) '
-# symbol = "\ue725 "
-symbol = "\ufb2b "
-# symbol = "\uf418 "
-style = 'purple'
-truncation_length = 9223372036854775807
-truncation_symbol = '…'
-only_attached = false
-always_show_remote = false
-disabled = false
-
-[git_commit]
-commit_hash_length = 7
-format = '[\($hash$tag\)]($style) '
-style = 'green'
-only_detached = true
-disabled = false
-tag_symbol = '🏷  '
-tag_disabled = true
-
-[git_state]
-rebase = 'REBASING'
-merge = 'MERGING'
-revert = 'REVERTING'
-cherry_pick = 'CHERRY-PICKING'
-bisect = 'BISECTING'
-am = 'AM'
-am_or_rebase = 'AM/REBASE'
-style = 'yellow'
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-disabled = false
-
-[git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-style = '208'
-stashed = '\$'
-ahead = '⇡'
-behind = '⇣'
-diverged = '⇕'
-conflicted = '='
-deleted = '✘'
-renamed = '»'
-modified = '!'
-staged = '+'
-untracked = '?'
-disabled = false
+min_time = 0
+show_milliseconds = true
+style = 'yellow underline'
+format = '\([took $duration]($style)\) '
