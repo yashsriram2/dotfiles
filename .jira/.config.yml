@@ -1,0 +1,31 @@
+board:
+  id: 121
+  name: RAD Team Board
+  type: scrum
+epic:
+  name: ""
+  link: ""
+installation: Cloud
+issue:
+  types:
+  - id: "1"
+    name: Bug
+    handle: Bug
+    subtask: false
+  - id: "3"
+    name: Task
+    handle: Task
+    subtask: false
+  - id: "7"
+    name: Story
+    handle: Story
+    subtask: false
+  - id: "5"
+    name: Sub-task
+    handle: Sub-task
+    subtask: true
+login: yashasvi.patkuri@braincorp.com
+project:
+  key: RSE
+  type: classic
+server: https://braincorporation.atlassian.net/

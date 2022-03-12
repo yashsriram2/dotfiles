@@ -188,8 +188,6 @@ let g:LanguageClient_serverCommands = {
     \ 'cpp'     : ['clangd-10'],
     \ }
 
-autocmd BufWritePost *.rs,*.py,*.c,*.cpp call LanguageClient#textDocument_formatting()
-
 nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
 nnoremap <leader>n :call LanguageClient#textDocument_rename()<Enter>
 nnoremap <leader>h :call LanguageClient#textDocument_hover()<Enter>
@@ -197,10 +195,11 @@ nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
 nnoremap <leader>r :call LanguageClient#textDocument_references()<Enter>
 nnoremap <leader>i :call LanguageClient#textDocument_implementation()<Enter>
 
-nnoremap <leader>g :GFiles<Enter>
-
+nnoremap <leader>g :GitFiles<Enter>
 nnoremap <C-A-a>   "hyiw:Rg <C-r>h<Enter>
 nnoremap <C-a>     :Rg<space>
+
+nnoremap <leader>t :FZF ~/dotfiles<Enter>
 
 " airline
   let g:airline#extensions#tabline#enabled = 1
@@ -220,9 +219,6 @@ nnoremap <C-a>     :Rg<space>
 
 " smart spell check
   autocmd BufReadPost,BufNewFile *.tex setlocal spell | set spelllang=en_us | inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" set html syntax for tera templates
-  autocmd BufReadPost *.html.tera set syntax=html
 
 " py files fold method
   autocmd BufReadPost *.py set foldmethod=indent

@@ -91,7 +91,7 @@ color=#f44336
 [wifi]
 label=
 color=#00bcd4
-command=echo "$(cat /sys/class/net/wlp61s0/operstate) $(ip addr | grep inet.\*wlp61s0 | awk '{print $2}')"
+command=echo "$(cat /sys/class/net/wlp61s0/operstate)"
 interval=10
 
 [separator]
@@ -101,21 +101,11 @@ color=#00bcd4
 [ethernet]
 label=
 color=#bcd400
-command=echo "$(cat /sys/class/net/enp0s31f6/operstate) $(ip addr | grep inet.\*enp0s31f6 | awk '{print $2}')"
+command=echo "$(cat /sys/class/net/enp0s31f6/operstate)"
 interval=10
 
 [separator]
 color=#bcd400
-
-# Disk usage
-[diskusage]
-label=
-interval=60
-command=echo $(df -h / | awk 'NR==2{print $4"+"$3"+OS="$2}')
-color=#ff9800
-
-[separator]
-color=#ff9800
 
 # Memory usage
 [memory]

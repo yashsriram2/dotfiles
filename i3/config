@@ -25,9 +25,9 @@ bindsym $windows_key+Shift+q kill
 for_window [class="SpeedCrunch"] floating enable, resize set 840 500, move position center, border pixel 2
 
 ################ Application Keymaps ################
-bindsym $windows_key+Return exec alacritty --working-directory ~/school/shining_software
-bindsym $windows_key+n exec alacritty -e nvr +'cd ~/school/shining_software'
-bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-26'
+bindsym $windows_key+Return exec alacritty --working-directory ~/shining_software
+bindsym $windows_key+n exec alacritty -e nvr +'cd ~/shining_software'
+bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-20'
 bindsym $windows_key+l exec i3lock -i ~/dotfiles/lockscreen.png
 bindsym $windows_key+a exec speedcrunch
 bindsym $windows_key+m exec xrandr --output eDP1 --mode 1920x1080 --rate 60 --output DP2-2 --size 0 --mode 1920x1080 --rate 60 --same-as eDP1 --brightness 0.8
@@ -37,6 +37,8 @@ bindsym $windows_key+t exec spotify
 ################ Brightness Control ################
 bindsym XF86MonBrightnessUp exec xbacklight -inc 2% && pkill -RTMIN+1 i3blocks
 bindsym XF86MonBrightnessDown exec xbacklight -dec 2% && pkill -RTMIN+1 i3blocks
+bindsym $control_key+XF86MonBrightnessUp exec xbacklight -inc 10% && pkill -RTMIN+1 i3blocks
+bindsym $control_key+XF86MonBrightnessDown exec xbacklight -dec 10% && pkill -RTMIN+1 i3blocks
 
 ################ Volume Control ################
 bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pkill -RTMIN+2 i3blocks
@@ -90,7 +92,7 @@ bindsym $windows_key+Shift+Right move right 30 px
 
 ################ Styling ################
 # Font for window titles. Will also be used by the bar unless a different font
-font pango: Fira Code 14
+font pango: Fira Code 12
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #000000 #ffe57f #000000 #267fb5   #267fb5
