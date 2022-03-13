@@ -35,10 +35,10 @@ bindsym $windows_key+s exec slack
 bindsym $windows_key+t exec spotify
 
 ################ Brightness Control ################
-bindsym XF86MonBrightnessUp exec xbacklight -inc 2% && pkill -RTMIN+1 i3blocks
-bindsym XF86MonBrightnessDown exec xbacklight -dec 2% && pkill -RTMIN+1 i3blocks
-bindsym $control_key+XF86MonBrightnessUp exec xbacklight -inc 10% && pkill -RTMIN+1 i3blocks
-bindsym $control_key+XF86MonBrightnessDown exec xbacklight -dec 10% && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessUp exec brightnessctl s +2% && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessDown exec brightnessctl s 2%- && pkill -RTMIN+1 i3blocks
+bindsym $control_key+XF86MonBrightnessUp exec brightnessctl s +10% && pkill -RTMIN+1 i3blocks
+bindsym $control_key+XF86MonBrightnessDown exec brightnessctl s 10%- && pkill -RTMIN+1 i3blocks
 
 ################ Volume Control ################
 bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pkill -RTMIN+2 i3blocks

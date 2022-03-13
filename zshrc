@@ -23,6 +23,8 @@ export PATH=$PATH:/usr/local/go/bin
 # aliases
 alias r="ranger"
 alias g="gitui"
+alias gs="git status"
+alias gd="git diff"
 alias t="trash-list"
 alias b="brainos"
 alias bs="brainos status"

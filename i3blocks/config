@@ -70,7 +70,7 @@ color=#76ff03
 [brightness]
 label=
 color=#ffd600
-command=printf "🟒 %.0f%%" $(xbacklight -get)
+command=brightnessctl -m | awk --field-separator=, '{ print $4 }'
 interval=60
 signal=1
 
