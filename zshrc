@@ -31,7 +31,9 @@ alias bs="brainos status"
 alias bb="brainos sandbox"
 alias bbr="brainos sandbox -r"
 
-export JIRA_API_TOKEN=N0edAQ70mZQFZezCUkOH5A58
+# go
+export GOPATH=~/.go/
+export PATH=$PATH:$(go env GOPATH)/bin
 
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship.toml
 eval "$(starship init zsh)"

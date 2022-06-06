@@ -22,21 +22,21 @@ bindsym $windows_key+Shift+d exec [ $(echo "Nope\nYes" | dmenu -b -fn 'Fira Mono
 bindsym $windows_key+Shift+q kill
 
 ################ Application startup positions ################
-for_window [class="SpeedCrunch"] floating enable, resize set 840 500, move position center, border pixel 2
+for_window [class="SpeedCrunch"] floating enable, resize set 440 300, move position center, border pixel 2
 
 ################ Application Keymaps ################
-bindsym $windows_key+Return exec alacritty --working-directory ~/shining_software
-bindsym $windows_key+n exec alacritty -e nvr +'cd ~/shining_software'
+bindsym $windows_key+Return exec alacritty
+bindsym $windows_key+n exec alacritty -e nvim
 bindsym $windows_key+space exec dmenu_run -fn 'Fira Mono-20'
 bindsym $windows_key+l exec i3lock -i ~/dotfiles/lockscreen.png
 bindsym $windows_key+a exec speedcrunch
-bindsym $windows_key+m exec xrandr --output eDP1 --mode 1920x1080 --rate 60 --output DP2-2 --size 0 --mode 1920x1080 --rate 60 --same-as eDP1 --brightness 0.8
+bindsym $windows_key+m exec xrandr --output eDP1 --mode 1600x900 --rate 60 && xrandr --output DP2-2 --size 0 --mode 1600x900 --rate 60 --same-as eDP1 --brightness 0.8
 bindsym $windows_key+s exec slack
 bindsym $windows_key+t exec spotify
 
 ################ Brightness Control ################
-bindsym XF86MonBrightnessUp exec brightnessctl s +2% && pkill -RTMIN+1 i3blocks
-bindsym XF86MonBrightnessDown exec brightnessctl s 2%- && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessUp exec brightnessctl s +1% && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessDown exec brightnessctl s 1%- && pkill -RTMIN+1 i3blocks
 bindsym $control_key+XF86MonBrightnessUp exec brightnessctl s +10% && pkill -RTMIN+1 i3blocks
 bindsym $control_key+XF86MonBrightnessDown exec brightnessctl s 10%- && pkill -RTMIN+1 i3blocks
 

@@ -19,6 +19,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'peterhoeg/vim-qml'
+  Plug 'DingDean/wgsl.vim'
 
   Plug 'lervag/vimtex'
   Plug 'cespare/vim-toml', {
@@ -36,8 +37,8 @@ call plug#end()
   syntax on
   filetype plugin on
   set title
-  set number relativenumber
   set mouse=a
+  set number
   set splitbelow splitright
   set encoding=utf-8
   set tabstop=4 shiftwidth=4 expandtab
@@ -47,22 +48,17 @@ call plug#end()
   set hidden
   set scrolloff=999
 
-" spelling
-  nnoremap <C-l> 1z=
-
 " appearance
   colorscheme PaperColor
   set background=dark
-  highlight Visual ctermfg=NONE
-  highlight Visual ctermbg=237
+  highlight Visual ctermfg=yellow ctermbg=238 cterm=underline
   highlight Normal ctermbg=black
+  highlight Folded ctermfg=yellow ctermbg=black cterm=bold
   " let g:airline_theme='dark'
   set cursorline
 
 " highlevel
   nnoremap ; :
-  nnoremap <C-h> :vertical help<Space>
-  nnoremap <C-A-h> "hyiw:vertical help <C-r>h<Enter>
   nnoremap <Enter> O<Esc>j
 
 " basic navigation
@@ -73,8 +69,6 @@ call plug#end()
 " selection
   vnoremap > >gv
   vnoremap < <gv
-  nnoremap <S-Up> Vk
-  nnoremap <S-Down> Vj
   vnoremap <S-Up> k
   vnoremap <S-Down> j
 
@@ -93,30 +87,16 @@ call plug#end()
   inoremap <C-s> <Esc>:w<Enter>i
   vnoremap <C-s> <Esc>:w<Enter>
 
-" make sure vim returns to the same line when you reopen a file.
-augroup line_return
-  au!
-  au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \     execute 'normal! g`"zvzz' |
-      \ endif
-augroup END
-
 " copy to system clipboard
   vnoremap <C-y> "+y
   nnoremap yall ggVG"+y
 
 " find
   set nowrapscan
+  nnoremap F     *N:set hlsearch<Enter>
   nnoremap <A-f> :set hlsearch!<Enter>
-  nnoremap <A-c> :set ignorecase!<Enter>
-  nnoremap <C-A-f> *N
-  vnoremap / "fy/<C-r>f<Enter>
-
-" replace
-  nnoremap <C-r> :%s///gc<Left><Left><Left><Left>
-  nnoremap <C-A-r> viw"ry:%s/<C-r>r/<C-r>r/gc<Left><Left><Left>
-  vnoremap <C-r> "ry:%s/<C-r>r//gc<Left><Left><Left>
+  nnoremap <C-f>     :Rg!<space>
+  nnoremap <C-A-f>   "hyiw:Rg! <C-r>h
 
 " remove all trailing whitespace
   nnoremap gws :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><Enter>
@@ -124,9 +104,6 @@ augroup END
 " convert b/w tabs and spaces
   nnoremap gts :set tabstop=2 shiftwidth=2 expandtab<Bar>:retab<Enter>
   nnoremap gtt :set tabstop=2 shiftwidth=2 noexpandtab<Bar>:%retab!<Enter>
-
-" reformat the entire file
-  nnoremap grf magg=G`a
 
 " command mode
   cnoremap <C-a> <home>
@@ -136,14 +113,7 @@ augroup END
   nnoremap qq :bd<Enter>
   nnoremap <A-Left> :bp<Enter>
   nnoremap <A-Right> :bn<Enter>
-
-" tabs
-  nnoremap qQ :q<Enter>
   nnoremap <C-t> :enew<Enter>
-  nnoremap <A-Up> :tabp<Enter>
-  nnoremap <A-Down> :tabn<Enter>
-  nnoremap <A-h> :sp<Enter>
-  nnoremap <A-v> :vsp<Enter>
 
 " panes/windows
   nnoremap <A-S-Down> <C-w>j
@@ -155,14 +125,6 @@ augroup END
   set foldlevel=99
   set foldmethod=syntax
   nnoremap <Tab> za
-
-" tags
-  nnoremap <leader><Right> <C-]>
-  nnoremap <leader><Left> <C-t>
-
-" jumps
-  nnoremap <leader><Up> <C-I>
-  nnoremap <leader><Down> <C-O>
 
 " ranger
   let g:ranger_replace_netrw = 1
@@ -181,25 +143,22 @@ augroup END
   let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 " lsp client
+nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
+
 let g:LanguageClient_serverCommands = {
     \ 'rust'    : ['~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer'],
-    \ 'python'  : ['pylsp'],
     \ 'c'       : ['clangd-10'],
     \ 'cpp'     : ['clangd-10'],
     \ }
-
-nnoremap <leader>l :call LanguageClient_contextMenu()<Enter>
-nnoremap <leader>n :call LanguageClient#textDocument_rename()<Enter>
-nnoremap <leader>h :call LanguageClient#textDocument_hover()<Enter>
-nnoremap <leader>d :call LanguageClient#textDocument_definition()<Enter>
-nnoremap <leader>r :call LanguageClient#textDocument_references()<Enter>
-nnoremap <leader>i :call LanguageClient#textDocument_implementation()<Enter>
-
-nnoremap <leader>g :GitFiles<Enter>
-nnoremap <C-A-a>   "hyiw:Rg <C-r>h<Enter>
-nnoremap <C-a>     :Rg<space>
-
-nnoremap <leader>t :FZF ~/dotfiles<Enter>
+nnoremap <C-Right> <C-I>
+nnoremap <C-Left> <C-O>
+nnoremap gd :call LanguageClient#textDocument_definition()<Enter>
+nnoremap gi :call LanguageClient#textDocument_implementation()<Enter>
+nnoremap gr :call LanguageClient#textDocument_references()<Enter>
+nnoremap gh :call LanguageClient#textDocument_hover()<Enter>
+nnoremap gt :call LanguageClient#textDocument_formatting()<Enter>
+nnoremap ga :call LanguageClient#textDocument_codeAction()<Enter>
+nnoremap gn :call LanguageClient#textDocument_rename()<Enter>
 
 " airline
   let g:airline#extensions#tabline#enabled = 1
@@ -217,8 +176,16 @@ nnoremap <leader>t :FZF ~/dotfiles<Enter>
   let g:tex_flavor='latex'
   let g:vimtex_quickfix_mode=0
 
-" smart spell check
-  autocmd BufReadPost,BufNewFile *.tex setlocal spell | set spelllang=en_us | inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" py files fold method
-  autocmd BufReadPost *.py set foldmethod=indent
+" auto commands
+  augroup vimrc
+    " make sure vim returns to the same line when you reopen a file.
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+    autocmd!
+    autocmd BufReadPost *.py normal zM
+    autocmd BufReadPost *.py set foldmethod=indent
+    autocmd CursorMoved *.py :call LanguageClient#textDocument_documentHighlight()
+    autocmd BufWritePost *.rs :call LanguageClient#textDocument_formatting()
+  augroup END

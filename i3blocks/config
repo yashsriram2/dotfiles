@@ -30,6 +30,15 @@ align=center
 separator=false
 separator_block_width=10
 
+# One plus earphones
+[earphones]
+command=echo "🎧 $(bluetoothctl info 98:09:CF:FE:CA:F0 | rg Connected | awk '{ print $2 }')"
+interval=10
+color=#11bc04
+
+[separator]
+color=#11bc04
+
 # Trash
 [trash]
 command=echo "$(($(ls -a ~/.local/share/Trash/info | wc -w) - 2)) | $(du -sh ~/.local/share/Trash/files | awk '{print $1}')"
@@ -42,7 +51,7 @@ color=#00bcd4
 # Time
 [time]
 label=
-command=date '+%a %b %d, %r'
+command=echo "$(date '+%a %b %d, %r') / UTC: $(date -u '+%I:%M %p')"
 interval=1
 
 [separator]
@@ -59,12 +68,19 @@ color=#00e676
 # Volume indicator
 [volume]
 command=$(pamixer --get-mute) && echo "Mute" || echo "🕫 $(pamixer --get-volume)%"
-interval=once
+interval=60
 color=#76ff03
 signal=2
 
 [separator]
 color=#76ff03
+
+# Room brightness
+[room_brightness]
+label=
+color=#ffd600
+command=fswebcam --quiet --no-banner --device v4l2:/dev/video2 --input 0 - | convert - -format "%[mean]" info:
+interval=60
 
 # Brighness level
 [brightness]
