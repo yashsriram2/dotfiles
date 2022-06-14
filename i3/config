@@ -34,6 +34,10 @@ bindsym $windows_key+m exec xrandr --output eDP1 --mode 1600x900 --rate 60 && xr
 bindsym $windows_key+s exec slack
 bindsym $windows_key+t exec spotify
 
+################ Shining Keymaps ################
+bindsym $windows_key+f exec alacritty -e nvim +'cd ~/company/shining_software'
+bindsym $windows_key+g exec alacritty --working-directory ~/company/shining_software
+
 ################ Brightness Control ################
 bindsym XF86MonBrightnessUp exec brightnessctl s +1% && pkill -RTMIN+1 i3blocks
 bindsym XF86MonBrightnessDown exec brightnessctl s 1%- && pkill -RTMIN+1 i3blocks
@@ -50,13 +54,6 @@ bindsym XF86AudioMute exec pamixer -t && pkill -RTMIN+2 i3blocks
 workspace_layout tabbed
 bindsym $windows_key+w layout tabbed
 bindsym $windows_key+e layout toggle split
-# bindsym $windows_key+s layout stacking
-bindsym $windows_key+v fullscreen toggle
-# split in horizontal orientation
-bindsym $windows_key+f split h
-# split in vertical orientation
-bindsym $windows_key+g split v
-# toggle tiling / floating
 bindsym $windows_key+q floating toggle
 
 ################ Window Switching ################

@@ -97,6 +97,8 @@ call plug#end()
   nnoremap <A-f> :set hlsearch!<Enter>
   nnoremap <C-f>     :Rg!<space>
   nnoremap <C-A-f>   "hyiw:Rg! <C-r>h
+  nnoremap <leader>g :GFiles!<Enter>
+  nnoremap <leader>t :GFiles! ~/dotfiles<Enter>
 
 " remove all trailing whitespace
   nnoremap gws :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><Enter>
@@ -178,12 +180,6 @@ nnoremap gn :call LanguageClient#textDocument_rename()<Enter>
 
 " auto commands
   augroup vimrc
-    " make sure vim returns to the same line when you reopen a file.
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-    autocmd!
     autocmd BufReadPost *.py normal zM
     autocmd BufReadPost *.py set foldmethod=indent
     autocmd CursorMoved *.py :call LanguageClient#textDocument_documentHighlight()

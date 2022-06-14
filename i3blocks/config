@@ -76,11 +76,11 @@ signal=2
 color=#76ff03
 
 # Room brightness
-[room_brightness]
-label=
-color=#ffd600
-command=fswebcam --quiet --no-banner --device v4l2:/dev/video2 --input 0 - | convert - -format "%[mean]" info:
-interval=60
+# [room_brightness]
+# label=
+# color=#ffd600
+# command=fswebcam --quiet --no-banner --device v4l2:/dev/video2 --input 0 - | convert - -format "%[mean]" info:
+# interval=60
 
 # Brighness level
 [brightness]
